@@ -7,19 +7,19 @@ import { useState } from 'react'
 
 const testimonials = [
   {
-    quote: "Premier Remodeling transformed our outdated kitchen into a stunning culinary space. Their attention to detail and craftsmanship exceeded all our expectations. We couldn't be happier with the results.",
+    quote: "They helped us make smart choices instead of just selling us the most expensive option. The crew showed up when they said they would, kept the kitchen clean, and the finished work looks great.",
     name: 'Sarah & Michael Thompson',
     location: 'The Woodlands, TX',
     rating: 5,
   },
   {
-    quote: "From the initial consultation to the final reveal, the team at Premier was professional, communicative, and delivered exceptional quality. Our bathroom renovation is absolutely beautiful.",
+    quote: "Our bathroom remodel had a few surprises behind the walls, but the team explained what they found and handled it without drama. We always knew what was happening next.",
     name: 'Jennifer Martinez',
     location: 'Sugar Land, TX',
     rating: 5,
   },
   {
-    quote: "We hired Premier for a complete home renovation and they delivered beyond our wildest dreams. Their design team understood our vision perfectly and brought it to life flawlessly.",
+    quote: "We needed flooring, paint, drywall, and trim after buying an older home. Premier coordinated the trades well and gave us a house that finally feels like ours.",
     name: 'Robert & Linda Chen',
     location: 'Katy, TX',
     rating: 5,
@@ -43,7 +43,7 @@ export function TestimonialsSection() {
     <section className="bg-matte-black py-24 md:py-32">
       <div className="mx-auto max-w-4xl px-6 lg:px-8">
         <FadeInView className="text-center">
-          <SectionLabel>What Clients Say</SectionLabel>
+          <SectionLabel>Homeowner Feedback</SectionLabel>
           
           {/* Decorative Quote Mark */}
           <div className="flex justify-center mb-8">
@@ -52,7 +52,7 @@ export function TestimonialsSection() {
             </span>
           </div>
 
-          <blockquote className="font-serif text-2xl md:text-3xl text-off-white font-light leading-relaxed mb-8">
+          <blockquote className="font-serif text-2xl md:text-3xl text-off-white font-light leading-relaxed mb-8 text-balance">
             {testimonial.quote}
           </blockquote>
 

@@ -9,21 +9,21 @@ import { useState } from 'react'
 
 const projects = [
   {
-    title: 'Modern Farmhouse Kitchen',
+    title: 'Kitchen Layout Refresh',
     location: 'The Woodlands, TX',
     category: 'Kitchen',
     imageBefore: '/images/hero-kitchen.jpg',
     imageAfter: '/images/hero-kitchen.jpg',
   },
   {
-    title: 'Spa-Inspired Master Bath',
+    title: 'Primary Bath Remodel',
     location: 'Sugar Land, TX',
     category: 'Bathroom',
     imageBefore: '/images/bathroom-luxury.jpg',
     imageAfter: '/images/bathroom-luxury.jpg',
   },
   {
-    title: 'Contemporary Living Space',
+    title: 'Living Room Renovation',
     location: 'Houston Heights, TX',
     category: 'Full Home',
     imageBefore: '/images/living-room.jpg',
@@ -36,7 +36,7 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
 
   return (
     <div
-      className="group relative overflow-hidden border border-border hover:border-gold transition-colors duration-500"
+      className="group relative overflow-hidden border border-border bg-off-white transition-colors duration-300 hover:border-gold"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -49,15 +49,14 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
         />
         <div className="absolute inset-0 bg-matte-black/30 group-hover:bg-matte-black/20 transition-colors duration-500" />
         
-        {/* Before/After Label */}
         <div className="absolute top-4 left-4 z-10">
           <span className="px-3 py-1 bg-gold text-matte-black text-xs font-medium tracking-widest uppercase">
-            {isHovered ? 'After' : 'Before'}
+            {isHovered ? 'After' : 'Before/After'}
           </span>
         </div>
       </div>
       
-      <div className="p-6 bg-off-white">
+      <div className="p-6">
         <span className="text-gold text-xs font-medium tracking-widest uppercase">
           {project.category}
         </span>
@@ -77,12 +76,12 @@ export function PortfolioTeaser() {
     <section className="bg-linen py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <FadeInView className="text-center mb-16">
-          <SectionLabel>Our Work</SectionLabel>
+          <SectionLabel>Project Gallery</SectionLabel>
           <h2 className="font-serif text-3xl md:text-5xl font-semibold text-matte-black mb-6">
-            Featured Projects
+            See the Kind of Work We Do
           </h2>
           <p className="text-matte-black/60 font-light max-w-2xl mx-auto text-lg">
-            Explore our portfolio of stunning transformations across Houston and surrounding areas.
+            Browse kitchen, bath, living space, addition, and outdoor projects from homes around Greater Houston.
           </p>
         </FadeInView>
 
@@ -99,7 +98,7 @@ export function PortfolioTeaser() {
             href="/portfolio"
             className="inline-flex items-center gap-2 text-matte-black font-medium tracking-wide hover:text-gold transition-colors gold-underline"
           >
-            View All Projects
+            View Our Work
             <ArrowRight className="h-4 w-4" />
           </Link>
         </FadeInView>

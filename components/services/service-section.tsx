@@ -11,6 +11,7 @@ interface ServiceSectionProps {
   features: string[]
   image: string
   imagePosition: 'left' | 'right'
+  detailHref?: string
 }
 
 export function ServiceSection({
@@ -20,6 +21,7 @@ export function ServiceSection({
   features,
   image,
   imagePosition,
+  detailHref,
 }: ServiceSectionProps) {
   const isImageLeft = imagePosition === 'left'
 
@@ -74,7 +76,16 @@ export function ServiceSection({
               ))}
             </ul>
 
-            <div>
+            <div className="flex flex-col gap-4 sm:flex-row">
+              {detailHref && (
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-matte-black/20 text-matte-black hover:border-gold hover:text-gold font-medium tracking-wide"
+                >
+                  <Link href={detailHref}>Learn More</Link>
+                </Button>
+              )}
               <Button
                 asChild
                 className="bg-gold text-matte-black hover:bg-gold/90 font-medium tracking-wide"

@@ -5,6 +5,8 @@ import './globals.css'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { CustomCursor } from '@/components/custom-cursor'
+import { JsonLd } from '@/components/json-ld'
+import { business, majorServices, serviceAreas } from '@/lib/seo'
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -19,9 +21,15 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Premier Remodeling Houston | Luxury Home Renovations',
-  description: 'Houston\'s premier remodeling company serving The Woodlands, Sugar Land, Katy, and Pearland. Luxury kitchen, bathroom, and full home renovations with 15+ years experience.',
-  keywords: 'Houston remodeling, luxury renovation, kitchen remodel Houston, bathroom remodel Houston, home renovation Texas',
+  metadataBase: new URL(business.url),
+  title: 'Premier Remodeling Houston | Kitchen, Bath & Home Renovations',
+  description: 'Houston remodeling contractor for kitchen remodeling, bathroom remodeling, flooring, painting, drywall, carpentry, additions, and whole-home renovations. Request a quote today.',
+  keywords: 'Houston remodeling contractor, kitchen remodel Houston, bathroom remodel Houston, home renovation Houston, flooring, drywall, painting, carpentry, home additions',
+  openGraph: {
+    title: 'Premier Remodeling Houston | Kitchen, Bath & Home Renovations',
+    description: 'Houston remodeling contractor for kitchen, bath, flooring, drywall, painting, additions, and whole-home renovations.',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
@@ -29,9 +37,38 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const localBusinessSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'HomeAndConstructionBusiness',
+    name: business.name,
+    telephone: business.phone,
+    email: business.email,
+    url: business.url,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: business.address,
+      addressLocality: business.city,
+      addressRegion: business.region,
+      postalCode: business.postalCode,
+      addressCountry: 'US',
+    },
+    areaServed: serviceAreas.map((area) => ({
+      '@type': 'City',
+      name: area,
+    })),
+    makesOffer: majorServices.map((service) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: service.title,
+      },
+    })),
+  }
+
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} bg-off-white`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${playfair.variable} bg-off-white`}>
       <body className="font-sans antialiased">
+        <JsonLd data={localBusinessSchema} />
         <CustomCursor />
         <Navbar />
         <main>{children}</main>

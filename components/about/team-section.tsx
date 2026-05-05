@@ -8,7 +8,7 @@ const team = [
   {
     name: 'James Mitchell',
     role: 'Founder & CEO',
-    bio: 'A third-generation builder with over 25 years of experience in residential construction and design. James founded Premier Remodeling with a vision to bring exceptional craftsmanship to Houston homeowners.',
+    bio: 'A third-generation builder with over 25 years of experience in residential construction and design. James founded Premier Remodeling to give Houston homeowners a more organized remodeling experience.',
   },
   {
     name: 'Sarah Chen',

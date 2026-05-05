@@ -3,15 +3,15 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X } from 'lucide-react'
+import { Menu, Phone, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
   { href: '/portfolio', label: 'Portfolio' },
+  { href: '/service-areas', label: 'Service Areas' },
   { href: '/about', label: 'About' },
-  { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -81,7 +81,7 @@ export function Navbar() {
                 asChild
                 className="bg-gold text-matte-black hover:bg-gold/90 font-medium tracking-wide"
               >
-                <Link href="/contact">Get a Free Quote</Link>
+                <Link href="/contact">Request Free Estimate</Link>
               </Button>
             </div>
 
@@ -140,11 +140,18 @@ export function Navbar() {
               ))}
 
               <div className="mt-8 pt-8 border-t border-gold/20">
+                <a
+                  href="tel:+17135551234"
+                  className="mb-4 flex items-center gap-3 text-off-white/80 transition-colors hover:text-gold"
+                >
+                  <Phone className="h-5 w-5 text-gold" />
+                  (713) 555-1234
+                </a>
                 <Button
                   asChild
                   className="w-full bg-gold text-matte-black hover:bg-gold/90 font-medium tracking-wide"
                 >
-                  <Link href="/contact">Get a Free Quote</Link>
+                  <Link href="/contact">Request Free Estimate</Link>
                 </Button>
               </div>
             </div>

@@ -4,28 +4,28 @@ import { FadeInView } from '@/components/fade-in-view'
 const steps = [
   {
     number: '01',
-    title: 'Consultation',
-    description: 'We begin with a detailed consultation to understand your vision, needs, and budget.',
+    title: 'Conversation',
+    description: 'We listen to what you want to change, what is not working, and what budget range makes sense.',
   },
   {
     number: '02',
-    title: 'Design',
-    description: 'Our design team creates detailed plans and 3D renderings to bring your vision to life.',
+    title: 'Scope',
+    description: 'We define the work, discuss materials, note unknowns, and prepare a clear written estimate.',
   },
   {
     number: '03',
-    title: 'Approval',
-    description: 'We review all materials, timelines, and costs to ensure complete alignment.',
+    title: 'Schedule',
+    description: 'Once the plan is approved, we line up trades, order materials, and set expectations before work begins.',
   },
   {
     number: '04',
     title: 'Build',
-    description: 'Our skilled craftsmen execute the project with precision and attention to detail.',
+    description: 'The crew protects your home, communicates progress, and keeps the project moving.',
   },
   {
     number: '05',
-    title: 'Reveal',
-    description: 'We complete a final walkthrough to ensure every detail meets our exacting standards.',
+    title: 'Walkthrough',
+    description: 'We review the finished work with you, handle punch list items, and leave the space clean.',
   },
 ]
 
@@ -36,7 +36,7 @@ export function ProcessSection() {
         <FadeInView className="text-center mb-16">
           <SectionLabel>How It Works</SectionLabel>
           <h2 className="font-serif text-3xl md:text-5xl font-semibold text-off-white">
-            Our Process
+            A Clear Process From First Call to Final Walkthrough
           </h2>
         </FadeInView>
 

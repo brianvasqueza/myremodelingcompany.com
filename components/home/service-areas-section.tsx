@@ -1,5 +1,6 @@
 import { SectionLabel } from '@/components/section-label'
 import { FadeInView } from '@/components/fade-in-view'
+import Link from 'next/link'
 
 const serviceAreas = [
   'Houston',
@@ -29,11 +30,10 @@ export function ServiceAreasSection() {
         <FadeInView className="text-center mb-16">
           <SectionLabel>Where We Work</SectionLabel>
           <h2 className="font-serif text-3xl md:text-5xl font-semibold text-matte-black mb-6">
-            Serving Greater Houston
+            Remodeling Across Greater Houston
           </h2>
           <p className="text-matte-black/60 font-light max-w-2xl mx-auto text-lg">
-            From downtown Houston to the surrounding suburbs, we bring luxury remodeling 
-            services to homeowners throughout the Greater Houston area.
+            We work with homeowners across Houston and nearby communities. If you are outside the list, reach out and we will let you know if we can help.
           </p>
         </FadeInView>
 
@@ -49,6 +49,14 @@ export function ServiceAreasSection() {
                 )}
               </span>
             ))}
+          </div>
+          <div className="mt-12 text-center">
+            <Link
+              href="/service-areas"
+              className="inline-flex items-center justify-center bg-gold px-7 py-3 font-semibold text-matte-black transition-colors hover:bg-gold/90"
+            >
+              View Service Areas
+            </Link>
           </div>
         </FadeInView>
       </div>

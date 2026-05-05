@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { ArrowLeft } from 'lucide-react'
 import { FadeInView } from '@/components/fade-in-view'
 import { CTABanner } from '@/components/cta-banner'
@@ -41,6 +42,30 @@ export function generateStaticParams() {
   return blogPosts.map((post) => ({
     slug: post.slug,
   }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const resolvedParams = await params
+  const post = blogPosts.find((p) => p.slug === resolvedParams.slug)
+
+  if (!post) {
+    return {}
+  }
+
+  return {
+    title: `${post.title} | Premier Remodeling Houston`,
+    description: post.excerpt,
+    openGraph: {
+      title: `${post.title} | Premier Remodeling Houston`,
+      description: post.excerpt,
+      type: 'article',
+      images: [post.image],
+    },
+  }
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -121,9 +146,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </section>
 
       <CTABanner
-        headline="Ready to Start Your Project?"
-        buttonText="Get a Free Quote"
+        headline="Ready to Start Your Remodeling Project?"
+        body="Talk with a Houston remodeling contractor about kitchen remodeling, bathroom remodeling, flooring, painting, drywall repair, or a larger home renovation."
+        buttonText="Request Free Estimate"
         buttonHref="/contact"
+        secondaryText="View Services"
+        secondaryHref="/services"
       />
     </>
   )

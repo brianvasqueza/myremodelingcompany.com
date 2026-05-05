@@ -3,18 +3,38 @@
 import { useState } from 'react'
 import { FadeInView } from '@/components/fade-in-view'
 import { Button } from '@/components/ui/button'
-import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { CheckCircle2, Clock, Mail, MapPin, Phone } from 'lucide-react'
 
 const projectTypes = [
   'Kitchen Remodeling',
   'Bathroom Remodeling',
-  'Full Home Renovation',
-  'Custom Addition',
+  'Whole-Home Renovation',
+  'Addition or Conversion',
+  'Flooring',
+  'Painting or Drywall',
+  'Carpentry or Trim',
   'Outdoor/Patio',
-  'Other',
+  'General Remodeling',
 ]
 
 const contactMethods = ['Phone', 'Email', 'Text']
+
+const budgetRanges = [
+  'Under $10,000',
+  '$10,000 - $25,000',
+  '$25,000 - $50,000',
+  '$50,000 - $100,000',
+  '$100,000+',
+  'Not sure yet',
+]
+
+const timelines = [
+  'As soon as possible',
+  '1 - 3 months',
+  '3 - 6 months',
+  '6+ months',
+  'Planning ahead',
+]
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -22,6 +42,9 @@ export function ContactSection() {
     phone: '',
     email: '',
     projectType: '',
+    projectLocation: '',
+    budgetRange: '',
+    timeline: '',
     contactMethod: '',
     message: '',
   })
@@ -44,13 +67,16 @@ export function ContactSection() {
   return (
     <section className="bg-off-white py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 gap-14 lg:grid-cols-[0.86fr_1.14fr] lg:gap-16">
           {/* Contact Info */}
           <FadeInView>
             <div>
               <h2 className="font-serif text-3xl md:text-4xl font-semibold text-matte-black mb-8">
-                Get in Touch
+                Tell Us What You Want to Change
               </h2>
+              <p className="mb-10 max-w-xl text-lg font-light leading-relaxed text-matte-black/65">
+                A short message is enough to get started. Share the room, the problem you want solved, and any timing or budget details you already know.
+              </p>
               
               <div className="space-y-8 mb-12">
                 <div className="flex gap-4">
@@ -112,34 +138,50 @@ export function ContactSection() {
               </div>
 
               <div className="p-6 bg-linen border border-border">
-                <p className="text-matte-black/70 font-light">
+                <p className="mb-5 text-matte-black/70 font-light">
                   <span className="text-gold font-medium">Service Area:</span>{' '}
-                  We proudly serve Houston and surrounding areas including The Woodlands, 
-                  Sugar Land, Katy, Pearland, Cypress, and more.
+                  Houston, The Woodlands, Sugar Land, Katy, Pearland, Cypress, Spring, Tomball, Missouri City, Bellaire, Memorial, and nearby communities.
                 </p>
+                <div className="grid gap-3 text-sm text-matte-black/70 sm:grid-cols-2">
+                  {['Free estimates', 'Local service', 'Clean job sites', 'Licensed/insured placeholder'].map((item) => (
+                    <span key={item} className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 shrink-0 text-gold" />
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </FadeInView>
 
           {/* Contact Form */}
           <FadeInView delay={200}>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-matte-black mb-2">
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-border bg-off-white text-matte-black focus:outline-none focus:border-gold transition-colors"
-                />
+            <form onSubmit={handleSubmit} className="border border-border bg-white p-5 shadow-sm sm:p-8">
+              <div className="mb-8">
+                <h2 className="font-serif text-2xl font-semibold text-matte-black">
+                  Request a Free Estimate
+                </h2>
+                <p className="mt-2 text-sm font-light leading-relaxed text-matte-black/60">
+                  Share a few details and we will follow up to schedule a consultation.
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-matte-black mb-2">
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    autoComplete="name"
+                    className="w-full border border-border bg-off-white px-4 py-3 text-matte-black transition-colors focus:border-gold focus:outline-none"
+                  />
+                </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-matte-black mb-2">
                     Phone *
@@ -151,9 +193,13 @@ export function ContactSection() {
                     value={formData.phone}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-border bg-off-white text-matte-black focus:outline-none focus:border-gold transition-colors"
+                    autoComplete="tel"
+                    className="w-full border border-border bg-off-white px-4 py-3 text-matte-black transition-colors focus:border-gold focus:outline-none"
                   />
                 </div>
+              </div>
+
+              <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-matte-black mb-2">
                     Email *
@@ -165,12 +211,28 @@ export function ContactSection() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-border bg-off-white text-matte-black focus:outline-none focus:border-gold transition-colors"
+                    autoComplete="email"
+                    className="w-full border border-border bg-off-white px-4 py-3 text-matte-black transition-colors focus:border-gold focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="projectLocation" className="block text-sm font-medium text-matte-black mb-2">
+                    Project Location
+                  </label>
+                  <input
+                    type="text"
+                    id="projectLocation"
+                    name="projectLocation"
+                    value={formData.projectLocation}
+                    onChange={handleChange}
+                    placeholder="City or ZIP code"
+                    autoComplete="address-level2"
+                    className="w-full border border-border bg-off-white px-4 py-3 text-matte-black placeholder:text-matte-black/40 transition-colors focus:border-gold focus:outline-none"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <label htmlFor="projectType" className="block text-sm font-medium text-matte-black mb-2">
                     Project Type
@@ -180,12 +242,53 @@ export function ContactSection() {
                     name="projectType"
                     value={formData.projectType}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-border bg-off-white text-matte-black focus:outline-none focus:border-gold transition-colors"
+                    className="w-full border border-border bg-off-white px-4 py-3 text-matte-black transition-colors focus:border-gold focus:outline-none"
                   >
                     <option value="">Select a project type</option>
                     {projectTypes.map((type) => (
                       <option key={type} value={type}>
                         {type}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="budgetRange" className="block text-sm font-medium text-matte-black mb-2">
+                    Budget Range
+                  </label>
+                  <select
+                    id="budgetRange"
+                    name="budgetRange"
+                    value={formData.budgetRange}
+                    onChange={handleChange}
+                    className="w-full border border-border bg-off-white px-4 py-3 text-matte-black transition-colors focus:border-gold focus:outline-none"
+                  >
+                    <option value="">Select a range</option>
+                    {budgetRanges.map((range) => (
+                      <option key={range} value={range}>
+                        {range}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div>
+                  <label htmlFor="timeline" className="block text-sm font-medium text-matte-black mb-2">
+                    Timeline
+                  </label>
+                  <select
+                    id="timeline"
+                    name="timeline"
+                    value={formData.timeline}
+                    onChange={handleChange}
+                    className="w-full border border-border bg-off-white px-4 py-3 text-matte-black transition-colors focus:border-gold focus:outline-none"
+                  >
+                    <option value="">Select a timeline</option>
+                    {timelines.map((timeline) => (
+                      <option key={timeline} value={timeline}>
+                        {timeline}
                       </option>
                     ))}
                   </select>
@@ -199,7 +302,7 @@ export function ContactSection() {
                     name="contactMethod"
                     value={formData.contactMethod}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-border bg-off-white text-matte-black focus:outline-none focus:border-gold transition-colors"
+                    className="w-full border border-border bg-off-white px-4 py-3 text-matte-black transition-colors focus:border-gold focus:outline-none"
                   >
                     <option value="">Select a method</option>
                     {contactMethods.map((method) => (
@@ -211,7 +314,7 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div>
+              <div className="mt-6">
                 <label htmlFor="message" className="block text-sm font-medium text-matte-black mb-2">
                   Message
                 </label>
@@ -221,18 +324,25 @@ export function ContactSection() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  placeholder="Tell us about your project..."
-                  className="w-full px-4 py-3 border border-border bg-off-white text-matte-black placeholder:text-matte-black/40 focus:outline-none focus:border-gold transition-colors resize-none"
+                  placeholder="Example: We want to remodel our hall bathroom, replace the tub with a walk-in shower, update tile, and improve storage."
+                  className="w-full resize-none border border-border bg-off-white px-4 py-3 text-matte-black placeholder:text-matte-black/40 transition-colors focus:border-gold focus:outline-none"
                 />
               </div>
 
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-gold text-matte-black hover:bg-gold/90 font-medium tracking-wide"
+                className="mt-7 w-full bg-gold text-matte-black hover:bg-gold/90 font-semibold tracking-wide"
               >
-                Send Message
+                Request Free Estimate
               </Button>
+              <p className="mt-4 text-center text-xs font-light leading-relaxed text-matte-black/50">
+                Prefer to talk now? Call{' '}
+                <a href="tel:+17135551234" className="font-medium text-matte-black hover:text-gold">
+                  (713) 555-1234
+                </a>
+                .
+              </p>
             </form>
           </FadeInView>
         </div>

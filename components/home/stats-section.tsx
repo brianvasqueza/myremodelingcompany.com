@@ -5,8 +5,8 @@ import { FadeInView } from '@/components/fade-in-view'
 const stats = [
   { value: 15, suffix: '+', label: 'Years Experience' },
   { value: 500, suffix: '+', label: 'Projects Completed' },
-  { value: 50, suffix: '+', label: 'Cities Served' },
-  { value: 100, suffix: '%', label: 'Satisfaction Rate' },
+  { value: 18, suffix: '+', label: 'Service Areas' },
+  { value: 1, suffix: '', label: 'Dedicated Project Lead' },
 ]
 
 export function StatsSection() {
@@ -14,9 +14,9 @@ export function StatsSection() {
     <section className="bg-matte-black py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <FadeInView className="text-center mb-16">
-          <SectionLabel>Why Us</SectionLabel>
+          <SectionLabel>Local Experience</SectionLabel>
           <h2 className="font-serif text-3xl md:text-4xl font-semibold text-off-white">
-            Trusted by Houston Homeowners
+            Built on Straight Answers and Careful Work
           </h2>
         </FadeInView>
 
